@@ -122,9 +122,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |  F13 |  F14 |  F15 |  F16 |  F17 |  F18 |  F19 |  F20 |  F21 |  F22 |  F22 |  F23 |
  * |------+------+------+------+------+-------------+------+------+------+------+------+
- * |CapWrd|      |      |Aud on|AudOff| Reset| Debug|Dvorak|Qwerty|      |      |      |
+ * |CapWrd|AuShOn|      |Aud on|AudOff| Reset| Debug|Dvorak|Qwerty|      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |AuShOf|      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -132,13 +132,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = LAYOUT_preonic_grid(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
     KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,
-    CW_TOGG, _______, _______, AU_ON,   AU_OFF,  QK_BOOT, DB_TOGG, DVORAK,  QWERTY,  _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    CW_TOGG, AS_ON,   _______, AU_ON,   AU_OFF,  QK_BOOT, DB_TOGG, DVORAK,  QWERTY,  _______, _______, _______,
+    _______, AS_OFF,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
 };
 
+static bool autoshift_enabled = true;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case DVORAK:
@@ -151,6 +152,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
+
+        case AS_ON:
+            autoshift_enabled = true;
+            break;
+        case AS_OFF:
+            autoshift_enabled = false;
+            break;
     }
     return true;
 };
@@ -172,7 +180,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     if (state) {
         autoshift_disable();
     } else {
-        autoshift_enable();
+        if (autoshift_enabled) {
+            autoshift_enable();
+        }
     }
 
     return state;
