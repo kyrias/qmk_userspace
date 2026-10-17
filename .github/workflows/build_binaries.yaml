@@ -24,18 +24,24 @@ jobs:
         with:
           fetch-tags: true
 
-      - name: Download binaries
-        if: always() && !cancelled()
-        uses: actions/download-artifact@v8
-        with:
-          name: Firmware
-
       - name: Get next version
         uses: reecetech/version-increment@2026.8.4
         id: version
         with:
           scheme: semver
           increment: patch
+
+      - name: Download binaries
+        if: always() && !cancelled()
+        uses: actions/download-artifact@v8
+        with:
+          name: Firmware
+
+      - name: Install rename
+        run: sudo apt install rename
+
+      - name: Rename binaries to include version
+        run: "find . -name '*.bin' -o -name '*.hex' -o -name '*.uf2' -exec rename 's/(.*)\\.([^.]*)/$1.v${{ steps.version.outputs.version }}.$2/' {} \\;"
 
       - name: Generate Release
         uses: softprops/action-gh-release@v3
@@ -48,6 +54,6 @@ jobs:
           draft: false
           prerelease: false
           files: |
-            **/*.hex
             **/*.bin
+            **/*.hex
             **/*.uf2
