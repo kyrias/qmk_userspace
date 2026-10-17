@@ -41,7 +41,7 @@ jobs:
         run: sudo apt install rename
 
       - name: Rename binaries to include version
-        run: "find . -name '*.bin' -o -name '*.hex' -o -name '*.uf2' -exec rename 's/(.*)\\.([^.]*)/$1.v${{ steps.version.outputs.version }}.$2/' {} \\;"
+        run: "find . \\( -name '*.bin' -o -name '*.hex' -o -name '*.uf2' \\) -exec rename 's/(.*)\\.([^.]*)/$1.v${{ steps.version.outputs.version }}.$2/' {} \\;"
 
       - name: Generate Release
         uses: softprops/action-gh-release@v3
