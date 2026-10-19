@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Alt  |   ;  |   Q  |   J  |   K  |   X  |   B  |   M  |   W  |   V  |   Z  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Shift| F24  | Left |Right |Lower |Space | Bksp |Upper |  Up  | Down | Tab  | Shift|
+ * | Shift| Menu | Left |Right |Lower |Space | Bksp |Upper |  Up  | Down | Tab  | Shift|
  * `-----------------------------------------------------------------------------------'
  */
 [_DVORAK] = LAYOUT_preonic_grid(
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LGUI, KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC,
     KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH,
     KC_LALT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_ENT,
-    KC_LSFT, KC_F24,  KC_LEFT, KC_RGHT, TL_LOWR, KC_SPC,  KC_BSPC, TL_UPPR, KC_UP,   KC_DOWN, KC_TAB,  KC_RSFT
+    KC_LSFT, KC_APP,  KC_LEFT, KC_RGHT, TL_LOWR, KC_SPC,  KC_BSPC, TL_UPPR, KC_UP,   KC_DOWN, KC_TAB,  KC_RSFT
 ),
 
 /* Qwerty
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Alt  |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Shift| F24  | Left |Right |Lower |Space | Bksp |Upper |  Up  | Down | Tab  | Shift|
+ * | Shift| Menu | Left |Right |Lower |Space | Bksp |Upper |  Up  | Down | Tab  | Shift|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LGUI, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LALT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT,
-    KC_LSFT, KC_F24,  KC_LEFT, KC_RGHT, TL_LOWR, KC_SPC,  KC_BSPC, TL_UPPR, KC_UP,   KC_DOWN, KC_TAB,  KC_RSFT
+    KC_LSFT, KC_APP,  KC_LEFT, KC_RGHT, TL_LOWR, KC_SPC,  KC_BSPC, TL_UPPR, KC_UP,   KC_DOWN, KC_TAB,  KC_RSFT
 ),
 
 /* Lower
